@@ -287,7 +287,7 @@ def generate_dynamic_menu(output_dir, current_prefix):
 
     # Generate the dynamic menu links
     dynamic_menu_links = "".join(
-        f"<li><a href='/{filename}'>{title}</a></li>" for filename, title in menu_items
+        f"<li><a href='pages/{filename}'>{title}</a></li>" for filename, title in menu_items
     )
     return dynamic_menu_links
 
@@ -363,7 +363,7 @@ def convert_markdown_to_html(md_file, output_dir, menu_items, pipeline):
 # Main function
 def main():
     input_dir = "website/markdown"
-    output_dir = "website/pages"
+    output_dir = "pages"
     os.makedirs(output_dir, exist_ok=True)
 
     # Generate menu items dynamically
