@@ -1,0 +1,327 @@
+/* Reset */
+body, h1, h2, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family:'Lexend Deca','Garamond', serif;
+    box-sizing: border-box;
+}
+
+/* Background gradient animation */
+@keyframes gradient-shift {
+    0% { background: linear-gradient(90deg, #007bff, #6a11cb); background-size: 200% 200%; background-position: 0% 50%; }
+    50% { background: linear-gradient(90deg, #6a11cb, #007bff); background-size: 200% 200%; background-position: 50% 50%; }
+    100% { background: linear-gradient(90deg, #007bff, #6a11cb); background-size: 200% 200%; background-position: 100% 50%; }
+}
+
+/* Body */
+body {
+    animation: gradient-shift 60s infinite;
+    background-color: black;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    margin: 0;
+    padding: 1em;
+    display: flex; /* Ensure body expands to contain everything */
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main body link styling */
+body a {
+    color: #4169e1; /* Default link color (blue) */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make links bold */
+}
+
+/* Hover effect for main body links */
+body a:hover {
+    color: #ffcc00; /* Change color on hover (yellow) */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+/* Header */
+header {
+    background-color: #4169e1; /* Blue header */
+    color: white;
+    padding: 1em 2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 12px; /* Rounded corners */
+}
+
+/* Navigation menu */
+header nav ul {
+    display: flex; /* Flexbox for horizontal alignment */
+    gap: 2em; /* Spacing between menu items */
+    justify-content: space-evenly; /* Center the menu items in the header */
+    list-style: none; /* Remove bullet points */
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+}
+
+
+
+/* Ensure <li> elements also have no list style */
+header nav ul li {
+    list-style: none; /* Explicitly remove bullet points for <li> */
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+}
+
+/* Menu items */
+header nav ul li a {
+    font-size: 1.2em; /* Increase font size */
+    letter-spacing: 0.1em; /* Add spacing between letters */
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+header nav ul li a:hover {
+    color: #ffcc00; /* Change color on hover */
+    letter-spacing: 0.12em; /* Slightly increase letter spacing on hover */
+    background-color: rgba(255, 255, 255, 0.2); /* Add translucent background on hover */
+    border-radius: 4px; /* Slight rounding for hover effect */
+}
+
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #4169e1;
+    color: white;
+    font-size: 0.9em;
+    margin-top: auto; /* Push the footer to the bottom */
+    border-radius: 12px; /* Rounded corners */
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: flex-start; /* Align items to the start */
+    max-width: 100%;
+    margin: 1em auto;
+    gap: 1em; /* Ensure gap between menu and main */
+    flex-grow: 1; /* Let it take up remaining space */
+}
+
+/* Dynamic Menu */
+.dynamic-menu a {
+    color: white; /* Change link text color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Add smooth transition for hover effect */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    transition: box-shadow 0.3s ease; /* Smooth shadow effect */
+}
+
+
+.dynamic-menu a:hover {
+    color: #ffcc00; /* Highlight on hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Hover shadow */
+}
+
+/* Remove bullet points in the dynamic menu */
+.dynamic-menu ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+/* Add spacing and style for dynamic menu items */
+.dynamic-menu ul li {
+    margin: 0.5em 0; /* Add spacing between items */
+}
+
+.dynamic-menu ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #4169e1; /* Default link color in the dynamic menu */
+}
+
+.dynamic-menu ul li a:hover {
+    color: #ffcc00; /* Highlight color on hover */
+}
+
+
+.dynamic-menu {
+    flex-shrink: 0; /* Prevent menu from shrinking on smaller screens */
+    width: 200px; /* Set fixed width */
+    background-color: black;
+    color: white;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 70vh; /* Ensure consistent height */
+}
+
+
+
+/* Main */
+main {
+    flex-grow: 1; /* Allow main to grow within the layout */
+    width: 70vw; /* Use 70% of the viewport width */
+    max-width: 800px; /* Optional: Constrain to a maximum width */
+    min-width: 400px; /* Optional: Prevent it from becoming too narrow */
+    height: 70vh; /* Fixed height for the "black box" */
+    padding: 1em;
+    background-color: black;
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* Nav Buttons */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.nav-buttons button {
+    background-color: #4169e1;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.nav-buttons button:hover {
+    background-color: #6600ff;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse; /* Ensures borders don't double up */
+    width: 50; /* Makes the table stretch to its container */
+    margin: 1em 0; /* Adds space above and below the table */
+    font-size: 1em; /* Adjusts the font size */
+    color: white; /* Text color */
+}
+
+/* Table link styling */
+table a {
+    color: white; /* Default link color (blue) */
+    text-decoration: underline; /* Remove underline */
+    font-weight: bold; /* Make links bold */
+}
+
+/* Hover effect for table links */
+table a:hover {
+    color: #ffcc00; /* Change color on hover (yellow) */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+th, td {
+    border: 1px solid #4169e1; /* Blue border color */
+    padding: 0.5em; /* Adds padding inside cells */
+    text-align: left; /* Aligns text to the left */
+}
+
+th {
+    background-color: #4169e1; /* Blue background for headers */
+    color: white; /* White text for headers */
+    font-weight: normal ; /* Makes header text bold */
+}
+
+tr:nth-child(even) {
+    background-color: black; /* Adds a light gray background to even rows */
+}
+
+tr:hover {
+    background-color: #363434; /* Highlights the row on hover */
+}
+
+
+/* Bullets */
+/* Ensure the unordered list uses visible bullets */
+ul {
+    list-style-type: disc; /* Forces the use of standard bullet points */
+    margin-left: 2em; /* Add space to the left of the list */
+    padding-left: 1em; /* Add padding for better spacing */
+    color: white; /* Ensures text color is white */
+}
+
+/* For nested unordered lists */
+ul ul {
+    list-style-type: circle; /* Change nested bullets to circles */
+    margin-left: 1.5em;
+    padding-left: 1em;
+}
+
+/* Style for list items */
+li {
+    margin: 0.5em 0; /* Adds space between list items */
+    color: white; /* Ensures text color is white */
+    position: relative; /* Required for custom bullets if needed */
+}
+
+/* Explicitly style the bullet marker */
+ul li::marker {
+    color: white; /* Set the bullet color to white */
+    font-size: 1.2em; /* Slightly enlarge the bullets */
+}
+
+/* Custom bullets only for general lists, not menus */
+body ul:not(#menu) li::before {
+    content: "•"; /* Use a custom bullet symbol */
+    color: white; /* White bullet color */
+    font-size: 1.2em; /* Enlarge the custom bullet */
+    position: absolute;
+    left: -1.5em; /* Position the bullet properly */
+}
+
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+}
+
+/* Small images */
+.small-image {
+    width: 150px;
+    height: auto;
+}
+
+.medium-image {
+    width: 300px;
+    height: auto;
+}
+
+.large-image {
+    width: 600px;
+    height: auto;
+}
+
+.full-width-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional rounded corners */
+}
+
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column; /* Stack menu items vertically */
+        gap: 1em; /* Adjust gap for vertical layout */
+    }
+
+    header {
+        text-align: center; /* Center everything for smaller screens */
+    }
+}
