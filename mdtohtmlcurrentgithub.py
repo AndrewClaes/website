@@ -27,7 +27,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <div class="layout">
     <!-- Dynamic left menu -->
     <aside class="dynamic-menu">
-      <h3><a href="pages/{prefix}.html">{menu_title}</a></h3>
+      <h3><a href="../pages/{prefix}.html">{menu_title}</a></h3>
       <ul>
         {dynamic_menu_links}
       </ul>
