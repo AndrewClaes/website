@@ -6,9 +6,9 @@ import re
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {meta_keywords}
   <title>{title}</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -82,69 +82,6 @@ def replace_md_links(md_content):
     return re.sub(r'\(([^)]+)\.md\)', r'(\1.html)', md_content)
 
 # Add other processing functions here
-def extract_keywords(md_content, output_dir, page_name):
-    """
-    Extracts inline #keywords from Markdown content, converts them to HTML links,
-    and ensures `home-tags-keyword.html` pages exist with back-references.
-    """
-    lines = md_content.split("\n")
-    keywords = set()  # Store unique keywords
-    processed_content = []  # Store updated content
-
-    for line in lines:
-        # Ignore Markdown headings (start with '#' followed by a space)
-        if not re.match(r"^\s*#+\s", line):
-            # Find inline hashtags (e.g., #project, #music)
-            found_keywords = re.findall(r"#([\w\d_]+)", line)
-            keywords.update(found_keywords)  # Add unique keywords
-
-            # Replace #keyword with a clickable link
-            for keyword in found_keywords:
-                link = f"<a href='/pages/home-tags-{keyword}.html'>{keyword}</a>"
-                line = line.replace(f"#{keyword}", link)
-
-        processed_content.append(line)  # Store modified line
-
-    # Generate meta tag
-    meta_tag = f'<meta name="keywords" content="{", ".join(keywords)}">' if keywords else ""
-
-    # Ensure each tag page exists and update it using the global HTML_TEMPLATE
-    for keyword in keywords:
-        tag_file = os.path.join(output_dir, f"home-tags-{keyword}.html")
-        tag_title = f"Tag: {keyword}"
-
-        # Load existing content or create a new list
-        existing_links = set()
-        if os.path.exists(tag_file):
-            with open(tag_file, "r", encoding="utf-8") as file:
-                content = file.read()
-                # Extract existing links to prevent duplicates
-                existing_links.update(re.findall(r'<a href="/pages/(.*?)\.html">', content))
-
-        # Add the new page reference if it doesn't exist
-        if page_name not in existing_links:
-            existing_links.add(page_name)
-
-        # Generate updated content for the tag page
-        tag_links = "\n".join(f'<li><a href="/pages/{link}.html">{link}</a></li>' for link in sorted(existing_links))
-        tag_content = HTML_TEMPLATE.format(
-            title=tag_title,
-            meta_keywords=f'<meta name="keywords" content="{keyword}">',
-            content=f"<h1>{tag_title}</h1><ul>{tag_links}</ul>",
-            menu_links="",  # Can be modified if a static menu is needed
-            dynamic_menu_links="",  # Can be modified if a dynamic menu is needed
-            menu_title=tag_title,
-            prefix=f"home-tags-{keyword}"
-        )
-
-        # Write or update the tag file
-        with open(tag_file, "w", encoding="utf-8") as file:
-            file.write(tag_content)
-
-    return "\n".join(processed_content), meta_tag  # Return updated content + meta tag
-
-
-
 def process_bullets(md_content):
     """
     Converts Markdown unordered bullet points to HTML <ul> and <li> elements.
@@ -386,22 +323,16 @@ def convert_markdown_to_html(md_file, output_dir, menu_items, pipeline):
     # Process the Markdown content through the pipeline
     markdown_content = process_pipeline(markdown_content, pipeline)
 
-    # Extract page name from file
-    page_name = os.path.basename(md_file).lower().replace(".md", "").replace(".html", "")
-
-    # Extract keywords, replace #keywords with links, and generate tag pages
-    markdown_content, meta_keywords = extract_keywords(markdown_content, output_dir, page_name)
-
     # Convert Markdown to HTML
     html_content = markdown(markdown_content)
 
-    # Extract title from first header
+    # Extract title from the first header
     title = "Andrew Claes"
     if markdown_content.strip().startswith("#"):
         title = markdown_content.splitlines()[0].replace("#", "").strip()
 
-    # Ensure meta_keywords is always a string (avoid None)
-    meta_keywords = meta_keywords or ""
+    # Define page_name from the markdown file
+    page_name = os.path.basename(md_file).lower().replace(".md", "").replace(".html", "")
 
     # Determine the prefix and menu title for the dynamic menu
     prefix, menu_title = determine_prefix(page_name, menu_items)
@@ -415,8 +346,7 @@ def convert_markdown_to_html(md_file, output_dir, menu_items, pipeline):
     # Format the HTML
     final_html = HTML_TEMPLATE.format(
         title=title,
-        meta_keywords=meta_keywords,  # ✅ Injects meta tag correctly
-        content=html_content,  # ✅ Ensures main content is included
+        content=html_content,
         menu_links=menu_links,
         dynamic_menu_links=dynamic_menu_links,
         menu_title=menu_title,
@@ -444,7 +374,6 @@ def main():
     pipeline = [
         process_custom_images,
         replace_md_links,
-     #   extract_keywords,
      #   process_bullets,  # Add support for bullets
         process_tables,   # Add support for tables
      #   process_italics_and_bold,
