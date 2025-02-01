@@ -130,7 +130,27 @@ def extract_keywords(md_content, output_dir, page_name):
     # Generate meta tag
     meta_tag = f'<meta name="keywords" content="{", ".join(keywords)}">' if keywords else ""
 
-    # Ensure each tag page exists and update it using the global HTML_TEMPLATE
+    # Define static menu items (same for all tag pages)
+    menu_links = """
+        <li><a href='../pages/home.html'>Home</a></li>
+        <li><a href='../pages/blog.html'>Blog</a></li>
+        <li><a href='../pages/music.html'>Music</a></li>
+        <li><a href='../pages/research.html'>Research</a></li>
+        <li><a href='../pages/concerts.html'>Concerts</a></li>
+        <li><a href='../pages/links.html'>Links</a></li>
+        <li><a href='../pages/store.html'>Store</a></li>
+    """
+
+    # Generate a dynamic menu with all tag files (home-tags-*.html) in /pages/
+    tag_files = [
+        f for f in os.listdir(output_dir) if f.startswith("home-tags-") and f.endswith(".html")
+    ]
+    dynamic_menu_links = "\n".join(
+        f'<li><a href="/pages/{tag_file}">{tag_file.replace("home-tags-", "").replace(".html", "")}</a></li>'
+        for tag_file in sorted(tag_files)
+    )
+
+    # Ensure each tag page exists and update it
     for keyword in keywords:
         tag_file = os.path.join(output_dir, f"home-tags-{keyword}.html")
         tag_title = f"Tag: {keyword}"
@@ -141,21 +161,21 @@ def extract_keywords(md_content, output_dir, page_name):
             with open(tag_file, "r", encoding="utf-8") as file:
                 content = file.read()
                 # Extract existing links to prevent duplicates
-                existing_links.update(re.findall(r'<a href="/pages/(.*?)\.html">', content))
+                existing_links.update(re.findall(r'<a href="../pages/(.*?)\.html">', content))
 
         # Add the new page reference if it doesn't exist
         if page_name not in existing_links:
             existing_links.add(page_name)
 
         # Generate updated content for the tag page
-        tag_links = "\n".join(f'<li><a href="/pages/{link}.html">{link}</a></li>' for link in sorted(existing_links))
+        tag_links = "\n".join(f'<li><a href="../pages/{link}.html">{link}</a></li>' for link in sorted(existing_links))
         tag_content = HTML_TEMPLATE.format(
             title=tag_title,
             meta_keywords=f'<meta name="keywords" content="{keyword}">',
             content=f"<h1>{tag_title}</h1><ul>{tag_links}</ul>",
-            menu_links="",  # Can be modified if a static menu is needed
-            dynamic_menu_links="",  # Can be modified if a dynamic menu is needed
-            menu_title=tag_title,
+            menu_links=menu_links,  # Static menu for all pages
+            dynamic_menu_links=dynamic_menu_links,  # Dynamic list of all tag pages
+            menu_title="Tags",
             prefix=f"home-tags-{keyword}"
         )
 
@@ -164,6 +184,7 @@ def extract_keywords(md_content, output_dir, page_name):
             file.write(tag_content)
 
     return "\n".join(processed_content), meta_tag  # Return updated content + meta tag
+
 
 def process_tables(md_content):
     """
