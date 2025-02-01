@@ -316,12 +316,14 @@ img {
 }
 
 @media (max-width: 768px) {
-    header nav ul {
-        flex-direction: column; /* Stack menu items vertically */
-        gap: 1em; /* Adjust gap for vertical layout */
-    }
-
     header {
         text-align: center; /* Center everything for smaller screens */
     }
+    .dynamic-menu {
+        width: 80px; /* Reduce width on smaller screens */
+        padding: 0.5em; /* Reduce padding for better spacing */
+    }
 }
+
+
+

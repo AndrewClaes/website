@@ -8,12 +8,34 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://fonts.googleapis.com;
+    style-src 'self' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+  ">
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Andrew Claes - Music, Research, and Projects">
+
+  <!-- SEO: Keywords from Markdown -->
   {meta_keywords}
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="Explore the latest content from Andrew Claes.">
+  <meta property="og:image" content="https://andrewclaes.github.io/website/images/preview.jpg">
+  <meta property="og:url" content="https://andrewclaes.github.io/website//pages/{prefix}.html">
+  <meta property="og:type" content="website">
+
   <title>{title}</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <body>
   <header>
@@ -143,50 +165,6 @@ def extract_keywords(md_content, output_dir, page_name):
 
     return "\n".join(processed_content), meta_tag  # Return updated content + meta tag
 
-
-
-def process_bullets(md_content):
-    """
-    Converts Markdown unordered bullet points to HTML <ul> and <li> elements.
-    Skips sections explicitly marked for exclusion, such as the main menu.
-    """
-    lines = md_content.split("\n")
-    html_output = []
-    inside_list = False
-    exclude_processing = False  # Flag to skip certain sections
-
-    for line in lines:
-        # Detect sections to exclude based on custom markers or patterns
-        if "<ul id=\"menu\">" in line or "</ul>" in line:
-            # Pass the fixed menu content without processing
-            exclude_processing = not exclude_processing
-            html_output.append(line)
-            continue
-
-        if exclude_processing:
-            # Skip processing lines inside the excluded section
-            html_output.append(line)
-            continue
-
-        # Check if the line is a valid bullet point (e.g., "- content" or "* content")
-        if re.match(r"^\s*[-*] ", line):
-            if not inside_list:
-                html_output.append("<ul>")
-                inside_list = True
-            # Extract the content after the bullet point symbol
-            content = line.strip().lstrip("-*").strip()
-            html_output.append(f"<li>{content}</li>")
-        else:
-            if inside_list:
-                html_output.append("</ul>")
-                inside_list = False
-            html_output.append(line)  # Add non-list lines as they are
-
-    if inside_list:  # Close any unclosed lists
-        html_output.append("</ul>")
-
-    return "\n".join(html_output)
-
 def process_tables(md_content):
     """
     Converts Markdown tables to HTML <table>, <tr>, <th>, and <td> elements.
@@ -254,20 +232,6 @@ def process_tables(md_content):
         html_output.append("</table>")
 
     return "\n".join(html_output)
-
-def process_italics_and_bold(md_content):
-    """
-    Converts words surrounded by * or _ to HTML <em> for italics
-    and words surrounded by ** or __ to HTML <strong> for bold.
-    Handles nested or independent usage.
-    """
-    # Replace words surrounded by ** or __ with <strong> tags for bold
-    md_content = re.sub(r"(?<!\w)(\*\*|__)(.+?)\1(?!\w)", r"<strong>\2</strong>", md_content)
-    # Replace words surrounded by * or _ with <em> tags for italics
-    md_content = re.sub(r"(?<!\w)([*_])([^*_]+?)\1(?!\w)", r"<em>\2</em>", md_content)
-    return md_content
-
-
 
 def links_in_tab(html_content):
     """
@@ -445,8 +409,7 @@ def main():
         process_custom_images,
         replace_md_links,
      #   extract_keywords,
-     #   process_bullets,  # Add support for bullets
-        process_tables,   # Add support for tables
+        process_tables,  
      #   process_italics_and_bold,
         ]
 
