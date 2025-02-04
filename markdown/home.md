@@ -1,34 +1,20 @@
-#homesweet #missedyou #main
 
-# And now a head
+Welcome to my personal website.
 
-just a link [drew](https://www.andrewclaes.net)
+On these pages I want to share my [music](music.md), [projects](projects.md), [concerts](concerts.md) and interests.
 
-![image](../images/botbop.jpg)
+If you like my content, please consider buying something on my [bandcamp](https://macro31.bandcamp.com).
 
-*italo* **bold**
-**bold*ital***
-
-> block quote
-> vbsjkvs
-> wvsdvkw
-> wdbf:
-
-##Okee dan.
-
-* 1
-* 2
-* 3: 
-  - 1
-  - 2
-
-and this wil become a code block:
-
-	def blabla():
-		for i in step%16:
-			return i
+All prices are on a pay what you want basis, except shipping costs.
 
 
-Was dat code?
+Sit back, relax and take a deep breath.
+
+No ads, no cookies, no tracking (at least not by me).
+
+Enjoy your stay on a safe(r) space and I hope you find something you like.
+
+Sincerely,
+Andrew
 
 * * *

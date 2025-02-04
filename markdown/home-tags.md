@@ -1,5 +1,7 @@
-Tags
 
-Collection of all tags on the site
+Browse the collection of all tags used on this site.
 
-zoals [dit](home-tags-homesweet.html)
+[Click Here](home-tags-code.md)
+
+
+
