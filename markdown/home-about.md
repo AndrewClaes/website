@@ -2,7 +2,7 @@
 
 
 
-![AndrewClaes](../images/AndrewClaes1.jpg)
+![AndrewClaes](../images/AndrewClaes1.jpg)-medium
 
 
 
