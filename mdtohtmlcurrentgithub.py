@@ -185,7 +185,6 @@ def extract_keywords(md_content, output_dir, page_name):
 
     return "\n".join(processed_content), meta_tag  # Return updated content + meta tag
 
-
 def process_tables(md_content):
     """
     Converts Markdown tables to HTML <table>, <tr>, <th>, and <td> elements.
@@ -280,6 +279,22 @@ def links_in_tab(html_content):
 
     return html_content
 
+def convert_line_breaks(md_content):
+    """
+    Converts single line breaks to <br> tags while preserving paragraph breaks.
+    """
+    # Split content into paragraphs (double newlines indicate paragraphs)
+    paragraphs = md_content.split("\n\n")
+    
+    # Process each paragraph separately
+    processed_paragraphs = []
+    for para in paragraphs:
+        # Replace single line breaks with <br>
+        processed_para = para.replace("\n", " <br>\n")
+        processed_paragraphs.append(processed_para)
+    
+    # Rejoin paragraphs with double newlines to maintain separation
+    return "\n\n".join(processed_paragraphs)
 
 # Menu generation
 def generate_menu():
@@ -429,9 +444,8 @@ def main():
     pipeline = [
         process_custom_images,
         replace_md_links,
-     #   extract_keywords,
-        process_tables,  
-     #   process_italics_and_bold,
+        process_tables,
+        convert_line_breaks  
         ]
 
     # Convert Markdown to HTML
