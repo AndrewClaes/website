@@ -122,7 +122,7 @@ def extract_keywords(md_content, output_dir, page_name):
 
             # Replace #keyword with a clickable link
             for keyword in found_keywords:
-                link = f"<a href='../pages/home-tags-{keyword}.html'>{keyword}</a>"
+                link = f"<a href='../website/pages/home-tags-{keyword}.html'>{keyword}</a>"
                 line = line.replace(f"#{keyword}", link)
 
         processed_content.append(line)  # Store modified line
