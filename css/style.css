@@ -317,7 +317,7 @@ img {
 
 @media (max-width: 768px) {
     header {
-        text-align: center; /* Center everything for smaller screens */
+        display: none; /* Hide the entire header */
     }
     .dynamic-menu {
         width: 80px; /* Reduce width on smaller screens */
