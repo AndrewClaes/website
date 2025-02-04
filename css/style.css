@@ -326,6 +326,7 @@ img {
     }
     .layout {
         font-size: smaller;
+        max-width: 80%;
     }    
 }
 
