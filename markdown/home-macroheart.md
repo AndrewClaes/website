@@ -2,7 +2,7 @@
 Macroheart is the name of my one man company.
 I'm based in Antwerp, Belgium.
 
-![logo](images/logo.jpg)
+![logo](../images/logo.jpg)
 
 Macroheart
 Dianalaan 70
