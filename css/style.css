@@ -319,6 +319,9 @@ img {
     header {
         font-size: smaller;
     }
+    footer {
+        font-size: smaller;
+    }
     .dynamic-menu {
         width: 80px; /* Reduce width on smaller screens */
         padding: 1em; /* Reduce padding for better spacing */

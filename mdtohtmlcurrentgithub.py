@@ -77,6 +77,8 @@ def process_pipeline(md_content, pipeline):
         md_content = func(md_content)
     return md_content
 
+
+
 # Define a function for processing custom images
 def process_custom_images(md_content):
     """
@@ -290,6 +292,7 @@ def convert_line_breaks(md_content):
     
     # Rejoin paragraphs with double newlines to maintain separation
     return "\n\n".join(processed_paragraphs)
+
 
 # Menu generation
 def generate_menu():
