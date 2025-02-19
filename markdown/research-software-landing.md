@@ -1,8 +1,4 @@
 
-# software
-
-[Go to software menu](../pages/research-software-landing.html)
-
 
 With the advent of AI assisted coding, 
 a new world is opening up for me.
@@ -23,3 +19,6 @@ I created a Bespoke patch and matching script, creating a shorthand for writing 
 
 
 
+
+
+Make your choice in the menu or click [home](website/pages/home.html).
