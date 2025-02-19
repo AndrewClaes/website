@@ -9,7 +9,7 @@ Graduating as a **[Doctor in the Arts](research-jazzhands.md)** in 2023 and orig
 His insatiable curiosity led him to investigate the **influence of vibration on matter** with his 2010 research project **Cymatics** and later, in 2015, the **use of DIY electronics on stage (EOP).**
 
 
-Through self-study during his doctoral research, he acquired basic skills in **electrical engineering, programming, PCB design**, and, more recently, **[live coding](music-livecoding)** techniques, for which he developed his own [unique environment](research%20-%20software-livecoding.md) with [open source software](https://www.bespokesynth.com).
+Through self-study during his doctoral research, he acquired basic skills in **electrical engineering, programming, PCB design**, and, more recently, **[live coding](music-livecoding)** techniques, for which he developed his own [unique environment](research-software-livecoding.md) with [open source software](https://www.bespokesynth.com).
 
 
 Andrew is the inventor of the **[‘open hardware hybrid saxophone system’**](projects-hybridsax), transforming the saxophone into a **versatile MIDI controller.**
