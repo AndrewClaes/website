@@ -443,7 +443,7 @@ def main():
         process_custom_images,
         replace_md_links,
         process_tables,
-        #convert_line_breaks  
+        convert_line_breaks  
         ]
 
     # Convert Markdown to HTML
