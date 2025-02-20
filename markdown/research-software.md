@@ -1,7 +1,7 @@
 
 # software
 
-[Go to software menu](../pages/research-software-landing.html)
+[Go to software menu](../pages/research-software-about.html)
 
 
 With the advent of AI assisted coding, 
